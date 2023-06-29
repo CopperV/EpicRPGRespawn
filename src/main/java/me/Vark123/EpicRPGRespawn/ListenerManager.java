@@ -3,6 +3,8 @@ package me.Vark123.EpicRPGRespawn;
 import org.bukkit.Bukkit;
 
 import me.Vark123.EpicRPGRespawn.Misc.VanillaPortalListener;
+import me.Vark123.EpicRPGRespawn.PlayerSystem.Listeners.PlayerJoinListener;
+import me.Vark123.EpicRPGRespawn.PlayerSystem.Listeners.PlayerQuitListener;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PlayerPortalEntryListener;
 
 public final class ListenerManager {
@@ -14,6 +16,9 @@ public final class ListenerManager {
 		
 		Bukkit.getPluginManager().registerEvents(new PlayerPortalEntryListener(), inst);
 		Bukkit.getPluginManager().registerEvents(new VanillaPortalListener(), inst);
+
+		Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), inst);
+		Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), inst);
 	}
 	
 }
