@@ -1,0 +1,13 @@
+name: EpicRPGRespawn
+version: 2.0
+main: me.Vark123.EpicRPGRespawn.Main
+author: Vark123
+api-version: 1.18
+
+commands:
+  odrodzenie:
+  powrot:
+    aliases: [spawn]
+  prtl:
+  epictp:
+    aliases: [etp]
