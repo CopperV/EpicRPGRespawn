@@ -81,6 +81,11 @@ public final class FileManager {
 		YamlConfiguration fYml = YamlConfiguration.loadConfiguration(f);
 		fYml.set("respawn", respPlayer.getRespLoc());
 		fYml.set("display", respPlayer.getPlayer().getName());
+		try {
+			fYml.save(f);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public File getPlayerFile(Player p) {
