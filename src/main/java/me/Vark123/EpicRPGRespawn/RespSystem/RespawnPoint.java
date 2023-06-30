@@ -1,9 +1,11 @@
 package me.Vark123.EpicRPGRespawn.RespSystem;
 
 import lombok.Getter;
+import lombok.ToString;
 import me.Vark123.EpicRPGRespawn.Utils.RpgLocation;
 
 @Getter
+@ToString
 public class RespawnPoint {
 
 	private String respRegion;

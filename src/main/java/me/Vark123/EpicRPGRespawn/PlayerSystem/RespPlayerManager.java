@@ -10,6 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import me.Vark123.EpicRPG.Main;
+import me.Vark123.EpicRPGRespawn.FileSystem.FileManager;
 import me.Vark123.EpicRPGRespawn.RespSystem.RespManager;
 
 public final class RespPlayerManager {
@@ -51,6 +52,17 @@ public final class RespPlayerManager {
 		if(!players.containsKey(player))
 			return Optional.empty();
 		return Optional.of(players.get(player));
+	}
+	
+	public void clearContainer() {
+		players.values().forEach(respPlayer -> {
+			FileManager.get().savePlayer(respPlayer);
+		});
+		respController.values().forEach(task -> {
+			task.cancel();
+		});
+		players.clear();
+		respController.clear();
 	}
 	
 	public boolean playerWaitToTeleport(Player p) {

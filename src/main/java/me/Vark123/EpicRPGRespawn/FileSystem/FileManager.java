@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
@@ -105,6 +106,61 @@ public final class FileManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public void savePortal(APortal portal) {
+		YamlConfiguration fYml = YamlConfiguration.loadConfiguration(portals);
+		String key = portal.getPortalRegion();
+		Location loc = portal.getDestiny().bukkitLocation();
+		fYml.set(key+".world", loc.getWorld().getName());
+		fYml.set(key+".region", portal.getPortalRegion());
+		fYml.set(key+".x", loc.getX());
+		fYml.set(key+".y", loc.getY());
+		fYml.set(key+".z", loc.getZ());
+		fYml.set(key+".pitch", loc.getPitch());
+		fYml.set(key+".yaw", loc.getYaw());
+		if(portal instanceof PremiumPortal) {
+			PremiumPortal premiumPortal = (PremiumPortal) portal;
+			fYml.set(key+".perm", premiumPortal.getPerm());
+		}
+		try {
+			fYml.save(portals);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void saveResp(RespawnPoint point) {
+		YamlConfiguration fYml = YamlConfiguration.loadConfiguration(resps);
+		String key = point.getRespRegion();
+		Location loc = point.getRespLoc().bukkitLocation();
+		fYml.set(key+".world", loc.getWorld().getName());
+		fYml.set(key+".region", point.getRespRegion());
+		fYml.set(key+".perm", point.getPortalPerm());
+		fYml.set(key+".x", loc.getX());
+		fYml.set(key+".y", loc.getY());
+		fYml.set(key+".z", loc.getZ());
+		fYml.set(key+".pitch", loc.getPitch());
+		fYml.set(key+".yaw", loc.getYaw());
+		try {
+			fYml.save(resps);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteResp(RespawnPoint point) {
+		YamlConfiguration fYml = YamlConfiguration.loadConfiguration(resps);
+		fYml.getKeys(false).stream().filter(key -> {
+			return fYml.getString(key+".region").equals(point.getRespRegion());
+		}).forEach(key -> {
+			fYml.set(key, null);
+		});
+		try {
+			fYml.save(resps);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
