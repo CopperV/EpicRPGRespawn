@@ -48,7 +48,7 @@ public class EpicTpCommand implements CommandExecutor {
 			public void run() {
 				p.teleport(loc);
 			}
-		}.runTaskAsynchronously(Main.inst());
+		}.runTask(Main.inst());
 		return true;
 	}
 	
