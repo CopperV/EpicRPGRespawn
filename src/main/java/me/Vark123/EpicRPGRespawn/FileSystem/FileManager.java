@@ -2,7 +2,11 @@ package me.Vark123.EpicRPGRespawn.FileSystem;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -13,6 +17,7 @@ import me.Vark123.EpicRPGRespawn.Main;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayer;
 import me.Vark123.EpicRPGRespawn.PortalSystem.APortal;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalManager;
+import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.APortalEffect;
 import me.Vark123.EpicRPGRespawn.PortalSystem.Portals.PremiumPortal;
 import me.Vark123.EpicRPGRespawn.PortalSystem.Portals.StandardPortal;
 import me.Vark123.EpicRPGRespawn.RespSystem.RespManager;
@@ -66,11 +71,22 @@ public final class FileManager {
 	public RespPlayer loadPlayer(Player p) {
 		File f = getPlayerFile(p);
 		if(f == null) {
-			return new RespPlayer(p, "tut");
+			return new RespPlayer(p, "tut", null, new HashSet<>());
 		}
 		YamlConfiguration fYml = YamlConfiguration.loadConfiguration(f);
 		String resp = fYml.getString("respawn");
-		return new RespPlayer(p, resp);
+		
+		String effect = fYml.getString("current-effect", "none");
+		APortalEffect currentEffect = PortalManager.get().getPortalEffects().get(effect);
+		
+		List<String> effects = fYml.getStringList("unlocked-effects");
+		Set<APortalEffect> unlockedEffects = PortalManager.get().getPortalEffects().entrySet()
+				.stream()
+				.filter(entry -> effects.contains(entry.getKey()))
+				.map(entry -> entry.getValue())
+				.collect(Collectors.toSet());
+		
+		return new RespPlayer(p, resp, currentEffect, unlockedEffects);
 	}
 	
 	public void savePlayer(RespPlayer respPlayer) {
@@ -82,6 +98,11 @@ public final class FileManager {
 		YamlConfiguration fYml = YamlConfiguration.loadConfiguration(f);
 		fYml.set("respawn", respPlayer.getRespLoc());
 		fYml.set("display", respPlayer.getPlayer().getName());
+		fYml.set("current-effect", respPlayer.getCurrentEffect() != null ? respPlayer.getCurrentEffect().getId() : null);
+		fYml.set("unlocked-effects", respPlayer.getUnlockedEffects()
+				.stream()
+				.map(effect -> effect.getId())
+				.collect(Collectors.toList()));
 		try {
 			fYml.save(f);
 		} catch (IOException e) {

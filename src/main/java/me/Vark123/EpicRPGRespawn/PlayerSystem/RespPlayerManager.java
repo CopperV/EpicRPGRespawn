@@ -11,6 +11,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import me.Vark123.EpicRPG.Main;
 import me.Vark123.EpicRPGRespawn.FileSystem.FileManager;
+import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.APortalEffect;
 import me.Vark123.EpicRPGRespawn.RespSystem.RespManager;
 
 public final class RespPlayerManager {
@@ -102,11 +103,14 @@ public final class RespPlayerManager {
 				ADMIN_COOLDOWN : PLAYER_COOLDOWN;
 		int seconds = cd/20;
 		
-//		Location playerLoc = p.getLocation();
+		Optional<APortalEffect> effect = Optional.ofNullable(respPlayer.getCurrentEffect());
+		effect.ifPresent(_effect -> _effect.startEffect(p));
+		
 		p.sendMessage(Main.getInstance().getPrefix()+" §aPoczekaj "+seconds+" sekundy na teleportacje");
 		BukkitTask task = new BukkitRunnable() {
 			@Override
 			public void run() {
+				effect.ifPresent(_effect -> _effect.stopEffect(p));
 				if(this.isCancelled())
 					return;
 				p.teleport(loc);

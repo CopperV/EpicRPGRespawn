@@ -3,6 +3,7 @@ package me.Vark123.EpicRPGRespawn;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import io.github.rysefoxx.inventory.plugin.pagination.InventoryManager;
 import lombok.Getter;
 import me.Vark123.EpicRPGRespawn.FileSystem.FileManager;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayer;
@@ -15,9 +16,15 @@ public class Main extends JavaPlugin {
 
 	private static Main instance;
 	
+	@Getter
+	private InventoryManager manager;
+	
 	@Override
 	public void onEnable() {
 		instance = this;
+		
+		manager = new InventoryManager(instance);
+		manager.invoke();
 		
 		FileManager.get();
 		CommandExecutors.setExecutors();

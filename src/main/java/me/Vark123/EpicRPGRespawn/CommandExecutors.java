@@ -6,6 +6,8 @@ import me.Vark123.EpicRPGRespawn.Misc.EpicTpCommand;
 import me.Vark123.EpicRPGRespawn.Misc.PortalCreatorCommand;
 import me.Vark123.EpicRPGRespawn.Misc.RespCreatorCommand;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.RespCmdSystem.PlayerRespawnCommand;
+import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.Commands.PortalCommand;
+import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.Commands.PortalEffectCommand;
 
 public final class CommandExecutors {
 	
@@ -16,6 +18,8 @@ public final class CommandExecutors {
 		Bukkit.getPluginCommand("epictp").setExecutor(new EpicTpCommand());
 		Bukkit.getPluginCommand("odrodzenie").setExecutor(new RespCreatorCommand());
 		Bukkit.getPluginCommand("prtl").setExecutor(new PortalCreatorCommand());
+		Bukkit.getPluginCommand("portale").setExecutor(new PortalCommand());
+		Bukkit.getPluginCommand("portaleffect").setExecutor(new PortalEffectCommand());
 	}
 	
 }

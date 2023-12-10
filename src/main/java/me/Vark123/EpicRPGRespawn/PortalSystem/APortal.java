@@ -18,6 +18,6 @@ public abstract class APortal {
 	
 	public abstract boolean canUsePortal(Player p);
 	public abstract void teleport(Player p);
-	public abstract void teleport(Player p, ITeleportEffect effect);
+	public abstract void teleport(Player p, IPortalEffect effect);
 	
 }

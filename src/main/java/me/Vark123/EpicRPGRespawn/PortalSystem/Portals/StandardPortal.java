@@ -4,7 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import me.Vark123.EpicRPGRespawn.PortalSystem.APortal;
-import me.Vark123.EpicRPGRespawn.PortalSystem.ITeleportEffect;
+import me.Vark123.EpicRPGRespawn.PortalSystem.IPortalEffect;
 import me.Vark123.EpicRPGRespawn.Utils.RpgLocation;
 
 public class StandardPortal extends APortal {
@@ -28,14 +28,14 @@ public class StandardPortal extends APortal {
 	}
 
 	@Override
-	public void teleport(Player p, ITeleportEffect effect) {
+	public void teleport(Player p, IPortalEffect effect) {
 		Location loc = getDestiny().bukkitLocation();
 		if(loc == null 
 				|| loc.getWorld() == null)
 			return;
-		effect.playEffect(p.getLocation().clone());
+		effect.playShotEffect(p.getLocation().clone());
 		p.teleport(loc);
-		effect.playEffect(p.getLocation().clone());
+		effect.playShotEffect(p.getLocation().clone());
 	}
 
 }
