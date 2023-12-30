@@ -18,6 +18,7 @@ import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayer;
 import me.Vark123.EpicRPGRespawn.PortalSystem.APortal;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalManager;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.APortalEffect;
+import me.Vark123.EpicRPGRespawn.PortalSystem.Portals.PermPortal;
 import me.Vark123.EpicRPGRespawn.PortalSystem.Portals.PremiumPortal;
 import me.Vark123.EpicRPGRespawn.PortalSystem.Portals.StandardPortal;
 import me.Vark123.EpicRPGRespawn.RespSystem.RespManager;
@@ -144,6 +145,12 @@ public final class FileManager {
 		if(portal instanceof PremiumPortal) {
 			PremiumPortal premiumPortal = (PremiumPortal) portal;
 			fYml.set(key+".perm", premiumPortal.getPerm());
+			fYml.set(key+".type", "premium");
+		}
+		if(portal instanceof PermPortal) {
+			PermPortal premiumPortal = (PermPortal) portal;
+			fYml.set(key+".perm", premiumPortal.getPerm());
+			fYml.set(key+".type", "perm");
 		}
 		try {
 			fYml.save(portals);
@@ -210,6 +217,9 @@ public final class FileManager {
 					break;
 				case "premium":
 					portal = new PremiumPortal(region, rpgLoc, perm);
+					break;
+				case "perm":
+					portal = new PermPortal(region, rpgLoc, perm);
 					break;
 				default:
 					portal = new StandardPortal(region, rpgLoc);

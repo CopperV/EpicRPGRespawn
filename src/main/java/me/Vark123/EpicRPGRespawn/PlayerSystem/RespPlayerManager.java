@@ -81,6 +81,10 @@ public final class RespPlayerManager {
 			return;
 		respController.get(p).cancel();
 		respController.remove(p);
+
+		RespPlayer respPlayer = players.get(p);
+		Optional<APortalEffect> effect = Optional.ofNullable(respPlayer.getCurrentEffect());
+		effect.ifPresent(_effect -> _effect.stopEffect(p));
 	}
 	
 	public void respPlayerCooldown(Player p) {
@@ -116,6 +120,7 @@ public final class RespPlayerManager {
 				p.teleport(loc);
 				respController.remove(p);
 				p.sendMessage("§aPrzeteleportowales sie do punktu odrodzenia");
+				effect.ifPresent(_effect -> _effect.playShotEffect(p.getLocation()));
 			}
 		}.runTaskLater(me.Vark123.EpicRPGRespawn.Main.inst(), cd);
 		respController.put(p, task);
