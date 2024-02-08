@@ -29,6 +29,7 @@ public class Main extends JavaPlugin {
 		FileManager.get();
 		CommandExecutors.setExecutors();
 		ListenerManager.registerListeners();
+		Config.get().init();
 		
 		Bukkit.getOnlinePlayers().forEach(p -> {
 			RespPlayer respPlayer = FileManager.get().loadPlayer(p);

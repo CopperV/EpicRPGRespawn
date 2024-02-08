@@ -2,6 +2,7 @@ package me.Vark123.EpicRPGRespawn.FileSystem;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,7 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import lombok.Getter;
 import me.Vark123.EpicRPGRespawn.Main;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayer;
 import me.Vark123.EpicRPGRespawn.PortalSystem.APortal;
@@ -31,6 +33,8 @@ public final class FileManager {
 
 	private final File portals = new File(Main.inst().getDataFolder(), "portals.yml");
 	private final File resps = new File(Main.inst().getDataFolder(), "respawn.yml");
+	@Getter
+	private final File config = new File(Main.inst().getDataFolder(), "config.yml");
 	private final File users = new File(Main.inst().getDataFolder(), "users");
 	
 	private FileManager() {
@@ -44,6 +48,8 @@ public final class FileManager {
 	private void init() {
 		if(!Main.inst().getDataFolder().exists())
 			Main.inst().getDataFolder().mkdir();
+		
+		Main.inst().saveResource("config.yml", false);
 		
 		if(!users.exists())
 			users.mkdir();
@@ -72,7 +78,7 @@ public final class FileManager {
 	public RespPlayer loadPlayer(Player p) {
 		File f = getPlayerFile(p);
 		if(f == null) {
-			return new RespPlayer(p, "tut", null, new HashSet<>());
+			return new RespPlayer(p, "tut", new Date().getTime(), null, new HashSet<>());
 		}
 		YamlConfiguration fYml = YamlConfiguration.loadConfiguration(f);
 		String resp = fYml.getString("respawn");
@@ -87,7 +93,7 @@ public final class FileManager {
 				.map(entry -> entry.getValue())
 				.collect(Collectors.toSet());
 		
-		return new RespPlayer(p, resp, currentEffect, unlockedEffects);
+		return new RespPlayer(p, resp, new Date().getTime(), currentEffect, unlockedEffects);
 	}
 	
 	public void savePlayer(RespPlayer respPlayer) {
