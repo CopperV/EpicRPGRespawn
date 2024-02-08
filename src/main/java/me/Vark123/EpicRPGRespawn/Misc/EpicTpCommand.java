@@ -17,6 +17,8 @@ public class EpicTpCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(!cmd.getName().equalsIgnoreCase("epictp"))
 			return false;
+		if(!sender.hasPermission("epictp.cmd"))
+			return false;
 		if(args.length < 7) {
 			sendCorrectUsage(sender);
 			return false;

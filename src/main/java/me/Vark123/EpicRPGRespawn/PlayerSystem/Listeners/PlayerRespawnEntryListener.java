@@ -33,6 +33,8 @@ public class PlayerRespawnEntryListener implements Listener {
 		if(oRespPlayer.isEmpty())
 			return;
 		RespPlayer respPlayer = oRespPlayer.get();
+		if(!respPlayer.canModifyResp())
+			return;
 		
 		Map<String, RespawnPoint> resps = RespManager.get().getResps();
 		WorldGuard.getInstance().getPlatform()
@@ -49,7 +51,7 @@ public class PlayerRespawnEntryListener implements Listener {
 				if(!p.hasPermission(point.getPortalPerm())) {
 					Bukkit.dispatchCommand(
 							Bukkit.getConsoleSender(),
-							"lp user "+p.getName()+" permission set "+point.getPortalPerm()+" true server=epicrpg"
+							"lp user "+p.getName()+" permission set "+point.getPortalPerm()+" true"
 					);
 				}
 				respPlayer.setRespLoc(region);

@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import me.Vark123.EpicRPGRespawn.FileSystem.FileManager;
 import me.Vark123.EpicRPGRespawn.PortalSystem.APortal;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalManager;
+import me.Vark123.EpicRPGRespawn.PortalSystem.Portals.PermPortal;
 import me.Vark123.EpicRPGRespawn.PortalSystem.Portals.PremiumPortal;
 import me.Vark123.EpicRPGRespawn.PortalSystem.Portals.StandardPortal;
 import me.Vark123.EpicRPGRespawn.Utils.RpgLocation;
@@ -28,21 +29,26 @@ public class PortalCreatorCommand implements CommandExecutor {
 			return false;
 		}
 		if(args.length<2) {
-			sender.sendMessage("§4Uzycie: §a/prtl [region] [standard/premium] <perm>");
+			sender.sendMessage("§4Uzycie: §a/prtl [region] [standard/premium/perm] <perm>");
 			return false;
 		}
 		
 		RpgLocation loc = new RpgLocation(p.getLocation());
 		APortal portal;
+		String perm = null;
 		switch(args[1].toLowerCase()) {
 			case "standard":
 				portal = new StandardPortal(args[0], loc);
 				break;
 			case "premium":
-				String perm = null;
 				if(args.length > 2) 
 					perm = args[2];
 				portal = new PremiumPortal(args[0], loc, perm);
+				break;
+			case "perm":
+				if(args.length > 2) 
+					perm = args[2];
+				portal = new PermPortal(args[0], loc, perm);
 				break;
 			default:
 				p.sendMessage("§cNiepoprawny typ portalu");

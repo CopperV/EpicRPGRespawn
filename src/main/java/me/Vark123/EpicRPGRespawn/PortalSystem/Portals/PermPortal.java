@@ -3,18 +3,27 @@ package me.Vark123.EpicRPGRespawn.PortalSystem.Portals;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import lombok.Getter;
 import me.Vark123.EpicRPGRespawn.PortalSystem.APortal;
 import me.Vark123.EpicRPGRespawn.PortalSystem.IPortalEffect;
 import me.Vark123.EpicRPGRespawn.Utils.RpgLocation;
 
-public class StandardPortal extends APortal {
+@Getter
+public class PermPortal extends APortal {
 
-	public StandardPortal(String portalRegion, RpgLocation destiny) {
+	private String perm;
+	
+	public PermPortal(String portalRegion, RpgLocation destiny, String perm) {
 		super(portalRegion, destiny);
+		this.perm = perm;
 	}
 
 	@Override
 	public boolean canUsePortal(Player p) {
+		if(perm != null && !p.hasPermission(perm)) {
+			p.sendMessage("§cNie odblokowales jeszcze tego portalu!");
+			return false;
+		}
 		return true;
 	}
 

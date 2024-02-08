@@ -10,6 +10,9 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
 
+import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayer;
+import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayerManager;
+
 public class PlayerPortalEntryListener implements Listener {
 
 	@EventHandler
@@ -34,7 +37,11 @@ public class PlayerPortalEntryListener implements Listener {
 				APortal portal = portals.get(region);
 				if(!portal.canUsePortal(p))
 					return;
-				portal.teleport(p);
+				RespPlayer rp = RespPlayerManager.get().getRespPlayer(p).get();
+				if(rp.getCurrentEffect() == null)
+					portal.teleport(p);
+				else
+					portal.teleport(p, rp.getCurrentEffect());
 				p.sendMessage("§7[§aTELEPORTACJA§7]");
 			});
 	}

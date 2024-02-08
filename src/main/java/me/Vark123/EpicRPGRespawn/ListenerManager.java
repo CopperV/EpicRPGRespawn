@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 
 import me.Vark123.EpicRPGRespawn.BlackrockExtension.BlackrockEntryListener;
 import me.Vark123.EpicRPGRespawn.Misc.PlayerInstantRespawnListener;
+import me.Vark123.EpicRPGRespawn.Misc.RubyStoreOnRespListener;
 import me.Vark123.EpicRPGRespawn.Misc.VanillaPortalListener;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.Listeners.PlayerJoinListener;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.Listeners.PlayerQuitListener;
@@ -30,6 +31,7 @@ public final class ListenerManager {
 		Bukkit.getPluginManager().registerEvents(new PlayerTeleportListener(), inst);
 		
 		Bukkit.getPluginManager().registerEvents(new BlackrockEntryListener(), inst);
+		Bukkit.getPluginManager().registerEvents(new RubyStoreOnRespListener(), inst);
 	}
 	
 }

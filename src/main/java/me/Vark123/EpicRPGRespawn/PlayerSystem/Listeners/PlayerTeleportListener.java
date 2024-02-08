@@ -31,6 +31,8 @@ public class PlayerTeleportListener implements Listener {
 		if(oRespPlayer.isEmpty())
 			return;
 		RespPlayer respPlayer = oRespPlayer.get();
+		if(!respPlayer.canModifyResp())
+			return;
 		
 		Location loc = e.getTo();
 		Map<String, RespawnPoint> resps = RespManager.get().getResps();
@@ -48,7 +50,7 @@ public class PlayerTeleportListener implements Listener {
 				if(!p.hasPermission(point.getPortalPerm())) {
 					Bukkit.dispatchCommand(
 							Bukkit.getConsoleSender(),
-							"lp user "+p.getName()+" permission set "+point.getPortalPerm()+" true server=epicrpg"
+							"lp user "+p.getName()+" permission set "+point.getPortalPerm()+" true"
 					);
 				}
 				respPlayer.setRespLoc(region);

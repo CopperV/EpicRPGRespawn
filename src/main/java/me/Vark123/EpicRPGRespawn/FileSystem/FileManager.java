@@ -2,17 +2,25 @@ package me.Vark123.EpicRPGRespawn.FileSystem;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import lombok.Getter;
 import me.Vark123.EpicRPGRespawn.Main;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayer;
 import me.Vark123.EpicRPGRespawn.PortalSystem.APortal;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalManager;
+import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.APortalEffect;
+import me.Vark123.EpicRPGRespawn.PortalSystem.Portals.PermPortal;
 import me.Vark123.EpicRPGRespawn.PortalSystem.Portals.PremiumPortal;
 import me.Vark123.EpicRPGRespawn.PortalSystem.Portals.StandardPortal;
 import me.Vark123.EpicRPGRespawn.RespSystem.RespManager;
@@ -25,6 +33,8 @@ public final class FileManager {
 
 	private final File portals = new File(Main.inst().getDataFolder(), "portals.yml");
 	private final File resps = new File(Main.inst().getDataFolder(), "respawn.yml");
+	@Getter
+	private final File config = new File(Main.inst().getDataFolder(), "config.yml");
 	private final File users = new File(Main.inst().getDataFolder(), "users");
 	
 	private FileManager() {
@@ -38,6 +48,8 @@ public final class FileManager {
 	private void init() {
 		if(!Main.inst().getDataFolder().exists())
 			Main.inst().getDataFolder().mkdir();
+		
+		Main.inst().saveResource("config.yml", false);
 		
 		if(!users.exists())
 			users.mkdir();
@@ -66,11 +78,22 @@ public final class FileManager {
 	public RespPlayer loadPlayer(Player p) {
 		File f = getPlayerFile(p);
 		if(f == null) {
-			return new RespPlayer(p, "tut");
+			return new RespPlayer(p, "tut", new Date().getTime(), null, new HashSet<>());
 		}
 		YamlConfiguration fYml = YamlConfiguration.loadConfiguration(f);
 		String resp = fYml.getString("respawn");
-		return new RespPlayer(p, resp);
+		
+		String effect = fYml.getString("current-effect", "none");
+		APortalEffect currentEffect = PortalManager.get().getPortalEffects().get(effect);
+		
+		List<String> effects = fYml.getStringList("unlocked-effects");
+		Set<APortalEffect> unlockedEffects = PortalManager.get().getPortalEffects().entrySet()
+				.stream()
+				.filter(entry -> effects.contains(entry.getKey()))
+				.map(entry -> entry.getValue())
+				.collect(Collectors.toSet());
+		
+		return new RespPlayer(p, resp, new Date().getTime(), currentEffect, unlockedEffects);
 	}
 	
 	public void savePlayer(RespPlayer respPlayer) {
@@ -82,6 +105,11 @@ public final class FileManager {
 		YamlConfiguration fYml = YamlConfiguration.loadConfiguration(f);
 		fYml.set("respawn", respPlayer.getRespLoc());
 		fYml.set("display", respPlayer.getPlayer().getName());
+		fYml.set("current-effect", respPlayer.getCurrentEffect() != null ? respPlayer.getCurrentEffect().getId() : null);
+		fYml.set("unlocked-effects", respPlayer.getUnlockedEffects()
+				.stream()
+				.map(effect -> effect.getId())
+				.collect(Collectors.toList()));
 		try {
 			fYml.save(f);
 		} catch (IOException e) {
@@ -123,6 +151,12 @@ public final class FileManager {
 		if(portal instanceof PremiumPortal) {
 			PremiumPortal premiumPortal = (PremiumPortal) portal;
 			fYml.set(key+".perm", premiumPortal.getPerm());
+			fYml.set(key+".type", "premium");
+		}
+		if(portal instanceof PermPortal) {
+			PermPortal premiumPortal = (PermPortal) portal;
+			fYml.set(key+".perm", premiumPortal.getPerm());
+			fYml.set(key+".type", "perm");
 		}
 		try {
 			fYml.save(portals);
@@ -189,6 +223,9 @@ public final class FileManager {
 					break;
 				case "premium":
 					portal = new PremiumPortal(region, rpgLoc, perm);
+					break;
+				case "perm":
+					portal = new PermPortal(region, rpgLoc, perm);
 					break;
 				default:
 					portal = new StandardPortal(region, rpgLoc);
