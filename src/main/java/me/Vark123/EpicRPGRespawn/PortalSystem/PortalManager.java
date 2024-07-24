@@ -6,6 +6,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import lombok.Getter;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.APortalEffect;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.BloodPortalEffect;
+import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.EasterPortalEffect;
+import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.InfinitePortalEffect;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.SandPortalEffect;
 
 @Getter
@@ -22,6 +24,8 @@ public final class PortalManager {
 		
 		registerPortalEffect(new BloodPortalEffect());
 		registerPortalEffect(new SandPortalEffect());
+		registerPortalEffect(new InfinitePortalEffect());
+		registerPortalEffect(new EasterPortalEffect());
 	}
 	
 	public static final PortalManager get() {
