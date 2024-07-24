@@ -50,7 +50,7 @@ public class PlayerTeleportListener implements Listener {
 				if(!p.hasPermission(point.getPortalPerm())) {
 					Bukkit.dispatchCommand(
 							Bukkit.getConsoleSender(),
-							"lp user "+p.getName()+" permission set "+point.getPortalPerm()+" true"
+							"lp user "+p.getName()+" permission set "+point.getPortalPerm()+" true epicrpg"
 					);
 				}
 				respPlayer.setRespLoc(region);

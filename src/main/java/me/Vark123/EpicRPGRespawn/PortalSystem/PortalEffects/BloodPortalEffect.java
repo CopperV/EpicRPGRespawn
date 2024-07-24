@@ -26,6 +26,7 @@ public class BloodPortalEffect extends APortalEffect {
 	private static final Random rand = new Random();
 	private static Map<Player, BukkitTask> portalEffects = new ConcurrentHashMap<>();
 	private static DustOptions dust = new DustOptions(Color.RED, 0.8f);
+	private static final Vector baseVector = new Vector(1,0,0);
 	private final ItemStack it;
 	
 	
@@ -43,7 +44,8 @@ public class BloodPortalEffect extends APortalEffect {
 	public void playShotEffect(Location loc) {
 		loc.add(0, 1.25, 0);
 
-		double rotate = Math.toRadians(loc.getYaw()+90);
+		Vector dir = loc.getDirection().setY(0).normalize();
+		double rotate = dir.getZ() > 0 ? baseVector.angle(dir) * -1 : baseVector.angle(dir);
 		double r1 = 1.6;
 		double r2 = 0.7;
 		
