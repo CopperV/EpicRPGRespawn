@@ -58,7 +58,7 @@ public class RespCreatorCommand implements CommandExecutor {
 			case 3:
 				if(args[0].equalsIgnoreCase("ustaw")) {
 					RpgLocation respLoc = new RpgLocation(p.getLocation());
-					RespawnPoint resp = new RespawnPoint(args[0], respLoc, args[1]);
+					RespawnPoint resp = new RespawnPoint(args[1], respLoc, args[2]);
 					FileManager.get().saveResp(resp);
 					RespManager.get().getResps().put(resp.getRespRegion(), resp);
 					p.sendMessage("§aPomyslnie stworzono punkt odrodzenia");

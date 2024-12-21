@@ -24,7 +24,7 @@ public class PlayerRespawnMoveListener implements Listener {
 			return;
 		
 		RespPlayerManager.get().cancelResp(p);
-		p.sendMessage(Main.getInstance().getPrefix()+"§cPrzerwano teleportacje!");	
+		p.sendMessage(Main.getInstance().getPrefix()+" §cPrzerwano teleportacje!");	
 	}
 
 }

@@ -7,6 +7,7 @@ import lombok.Getter;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.APortalEffect;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.BloodPortalEffect;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.EasterPortalEffect;
+import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.HalloweenWisp;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.InfinitePortalEffect;
 import me.Vark123.EpicRPGRespawn.PortalSystem.PortalEffects.SandPortalEffect;
 
@@ -26,6 +27,7 @@ public final class PortalManager {
 		registerPortalEffect(new SandPortalEffect());
 		registerPortalEffect(new InfinitePortalEffect());
 		registerPortalEffect(new EasterPortalEffect());
+		registerPortalEffect(new HalloweenWisp());
 	}
 	
 	public static final PortalManager get() {
