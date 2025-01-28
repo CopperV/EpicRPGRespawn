@@ -6,10 +6,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import io.github.rysefoxx.inventory.plugin.content.IntelligentItem;
-import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
-import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
-import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
+import me.Vark123.EpicInventory.Content.IntelligentItem;
+import me.Vark123.EpicInventory.Content.InventoryContents;
+import me.Vark123.EpicInventory.Content.InventoryProvider;
+import me.Vark123.EpicInventory.Pagination.EpicInventory;
 import me.Vark123.EpicRPGRespawn.Main;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayer;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayerManager;
@@ -41,7 +41,7 @@ public final class PortalMenuManager {
 		if(rows <= 0)
 			rows = 1;
 		
-		RyseInventory.builder()
+		EpicInventory.builder()
 			.rows(rows)
 			.title("§7[§5§lEFEKTY PORTALI§7]")
 			.provider(getProvider(p, size))

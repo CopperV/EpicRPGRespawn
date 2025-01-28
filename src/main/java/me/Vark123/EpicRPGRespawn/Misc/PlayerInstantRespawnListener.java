@@ -3,7 +3,6 @@ package me.Vark123.EpicRPGRespawn.Misc;
 import java.util.Optional;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -16,7 +15,6 @@ import me.Vark123.EpicRPGRespawn.Main;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayer;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayerManager;
 import me.Vark123.EpicRPGRespawn.RespSystem.RespManager;
-import net.minecraft.network.protocol.game.PacketPlayInClientCommand;
 
 public class PlayerInstantRespawnListener implements Listener {
 
@@ -30,7 +28,8 @@ public class PlayerInstantRespawnListener implements Listener {
 			public void run() {
 				if(!p.isDead())
 					return;
-				((CraftPlayer)p).getHandle().b.a(new PacketPlayInClientCommand(PacketPlayInClientCommand.EnumClientCommand.a));
+//				((CraftPlayer)p).getHandle().b.a(new PacketPlayInClientCommand(PacketPlayInClientCommand.EnumClientCommand.a));
+				p.spigot().respawn();
 			}
 		}.runTask(Main.inst());
 	}

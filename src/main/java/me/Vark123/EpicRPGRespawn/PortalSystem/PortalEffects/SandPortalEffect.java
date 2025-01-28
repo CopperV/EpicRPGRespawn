@@ -130,7 +130,7 @@ public class SandPortalEffect extends APortalEffect {
 						
 						v1.add(v2);
 						Location tmp = loc.clone().add(v1);
-						tmp.getWorld().spawnParticle(Particle.BLOCK_CRACK, tmp, 1,
+						tmp.getWorld().spawnParticle(Particle.BLOCK, tmp, 1,
 								0,0,0,0, sandData);
 						tmp.getWorld().spawnParticle(Particle.CRIT, tmp, 1,
 								0,0,0,0);

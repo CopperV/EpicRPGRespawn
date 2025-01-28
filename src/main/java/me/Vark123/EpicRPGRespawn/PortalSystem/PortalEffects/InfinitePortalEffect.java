@@ -80,7 +80,7 @@ public class InfinitePortalEffect extends APortalEffect {
 					double z = Math.cos(rotate) * _x;
 					
 					Location tmp = loc.clone().add(x, y, z);
-					tmp.getWorld().spawnParticle(Particle.SMOKE_LARGE, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.LARGE_SMOKE, tmp, 0,
 							reverseDir.getX(), reverseDir.getY(), reverseDir.getZ(),
 							speed);
 				}
@@ -96,7 +96,7 @@ public class InfinitePortalEffect extends APortalEffect {
 					double z = Math.cos(rotate) * _x;
 					
 					Location tmp = loc.clone().add(x, y, z);
-					tmp.getWorld().spawnParticle(Particle.SMOKE_NORMAL, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.SMOKE, tmp, 0,
 							reverseDir.getX(), reverseDir.getY(), reverseDir.getZ(),
 							speed);
 				}
@@ -155,7 +155,7 @@ public class InfinitePortalEffect extends APortalEffect {
 					double z = Math.cos(rotate) * _x;
 					
 					Location tmp = loc.clone().add(x, y, z);
-					tmp.getWorld().spawnParticle(Particle.SMOKE_LARGE, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.LARGE_SMOKE, tmp, 0,
 							reversedDir.getX(), reversedDir.getY(), reversedDir.getZ(),
 							speed);
 				}
@@ -171,7 +171,7 @@ public class InfinitePortalEffect extends APortalEffect {
 					double z = Math.cos(rotate) * _x;
 					
 					Location tmp = loc.clone().add(x, y, z);
-					tmp.getWorld().spawnParticle(Particle.SMOKE_NORMAL, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.SMOKE, tmp, 0,
 							reversedDir.getX(), reversedDir.getY(), reversedDir.getZ(),
 							speed);
 				}
@@ -235,7 +235,7 @@ public class InfinitePortalEffect extends APortalEffect {
 					double z = Math.cos(rotate) * _x;
 					
 					Location tmp = loc.clone().add(x, y, z);
-					tmp.getWorld().spawnParticle(Particle.SMOKE_LARGE, tmp, 1,
+					tmp.getWorld().spawnParticle(Particle.LARGE_SMOKE, tmp, 1,
 							0, 0, 0, 0);
 				}
 				for(int i = 0; i < 25; ++i) {
@@ -254,7 +254,7 @@ public class InfinitePortalEffect extends APortalEffect {
 					double z = Math.cos(rotate) * _x;
 					
 					Location tmp = loc.clone().add(x, y, z);
-					tmp.getWorld().spawnParticle(Particle.SMOKE_NORMAL, tmp, 1,
+					tmp.getWorld().spawnParticle(Particle.SMOKE, tmp, 1,
 							0, 0, 0, 0);
 				}
 				

@@ -76,22 +76,22 @@ public class EasterPortalEffect extends APortalEffect {
 					return;
 				
 				leftLocations.forEach(tmp -> {
-					tmp.getWorld().spawnParticle(Particle.TOTEM, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, tmp, 0,
 							leftVector.getX(), leftVector.getY(), leftVector.getZ(),
 							0.1 + rand.nextDouble(1.35));
 				});
 				downLocations.forEach(tmp -> {
-					tmp.getWorld().spawnParticle(Particle.TOTEM, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, tmp, 0,
 							downVector.getX(), downVector.getY(), downVector.getZ(),
 							0.1 + rand.nextDouble(1.35));
 				});
 				rightLocations.forEach(tmp -> {
-					tmp.getWorld().spawnParticle(Particle.TOTEM, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, tmp, 0,
 							rightVector.getX(), rightVector.getY(), rightVector.getZ(),
 							0.1 + rand.nextDouble(1.35));
 				});
 				upLocations.forEach(tmp -> {
-					tmp.getWorld().spawnParticle(Particle.TOTEM, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, tmp, 0,
 							upVector.getX(), upVector.getY(), upVector.getZ(),
 							0.1 + rand.nextDouble(1.35));
 				});
@@ -140,22 +140,22 @@ public class EasterPortalEffect extends APortalEffect {
 					return;
 				
 				leftLocations.forEach(tmp -> {
-					tmp.getWorld().spawnParticle(Particle.TOTEM, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, tmp, 0,
 							leftVector.getX(), leftVector.getY(), leftVector.getZ(),
 							0.1 + rand.nextDouble(1.35));
 				});
 				downLocations.forEach(tmp -> {
-					tmp.getWorld().spawnParticle(Particle.TOTEM, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, tmp, 0,
 							downVector.getX(), downVector.getY(), downVector.getZ(),
 							0.1 + rand.nextDouble(1.35));
 				});
 				rightLocations.forEach(tmp -> {
-					tmp.getWorld().spawnParticle(Particle.TOTEM, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, tmp, 0,
 							rightVector.getX(), rightVector.getY(), rightVector.getZ(),
 							0.1 + rand.nextDouble(1.35));
 				});
 				upLocations.forEach(tmp -> {
-					tmp.getWorld().spawnParticle(Particle.TOTEM, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, tmp, 0,
 							upVector.getX(), upVector.getY(), upVector.getZ(),
 							0.1 + rand.nextDouble(1.35));
 				});
@@ -207,22 +207,22 @@ public class EasterPortalEffect extends APortalEffect {
 					return;
 				
 				leftLocations.forEach(tmp -> {
-					tmp.getWorld().spawnParticle(Particle.TOTEM, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, tmp, 0,
 							leftVector.getX(), leftVector.getY(), leftVector.getZ(),
 							0.1 + rand.nextDouble(1.35));
 				});
 				downLocations.forEach(tmp -> {
-					tmp.getWorld().spawnParticle(Particle.TOTEM, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, tmp, 0,
 							downVector.getX(), downVector.getY(), downVector.getZ(),
 							0.1 + rand.nextDouble(1.35));
 				});
 				rightLocations.forEach(tmp -> {
-					tmp.getWorld().spawnParticle(Particle.TOTEM, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, tmp, 0,
 							rightVector.getX(), rightVector.getY(), rightVector.getZ(),
 							0.1 + rand.nextDouble(1.35));
 				});
 				upLocations.forEach(tmp -> {
-					tmp.getWorld().spawnParticle(Particle.TOTEM, tmp, 0,
+					tmp.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, tmp, 0,
 							upVector.getX(), upVector.getY(), upVector.getZ(),
 							0.1 + rand.nextDouble(1.35));
 				});

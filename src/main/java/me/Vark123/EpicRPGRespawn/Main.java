@@ -3,8 +3,8 @@ package me.Vark123.EpicRPGRespawn;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import io.github.rysefoxx.inventory.plugin.pagination.InventoryManager;
 import lombok.Getter;
+import me.Vark123.EpicInventory.Pagination.InventoryManager;
 import me.Vark123.EpicRPGRespawn.FileSystem.FileManager;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayer;
 import me.Vark123.EpicRPGRespawn.PlayerSystem.RespPlayerManager;

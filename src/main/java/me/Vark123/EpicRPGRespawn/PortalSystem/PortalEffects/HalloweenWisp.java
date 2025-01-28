@@ -143,7 +143,7 @@ public class HalloweenWisp extends APortalEffect {
 		for (double angle = 0; angle < 2 * Math.PI; angle += Math.PI / 32) {
 	        double x = loc.getX() + radius * Math.cos(angle);
 	        double z = loc.getZ() + radius * Math.sin(angle);
-	        loc.getWorld().spawnParticle(Particle.SMOKE_NORMAL, x, loc.getY(), z, 0);
+	        loc.getWorld().spawnParticle(Particle.SMOKE, x, loc.getY(), z, 0);
 	    }
 		Utils.drawPentagram(Particle.FLAME, loc.clone().add(0, 0.1, 0), pentagramAxis, 5, radius, 0.05, 2, pentagramAngle.doubleValue());
 	}

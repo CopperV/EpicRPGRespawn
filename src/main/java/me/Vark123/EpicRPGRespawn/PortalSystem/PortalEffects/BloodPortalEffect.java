@@ -82,9 +82,9 @@ public class BloodPortalEffect extends APortalEffect {
 					return;
 				
 				for(Location tmp : redstoneLocations)
-					tmp.getWorld().spawnParticle(Particle.REDSTONE, tmp, 1, 0, 0, 0, 0, dust);
+					tmp.getWorld().spawnParticle(Particle.DUST, tmp, 1, 0, 0, 0, 0, dust);
 				for(Location tmp : smokeLocations)
-					tmp.getWorld().spawnParticle(Particle.SMOKE_NORMAL, tmp, 0, 0, 0.1, 0, 0.15);
+					tmp.getWorld().spawnParticle(Particle.SMOKE, tmp, 0, 0, 0.1, 0, 0.15);
 				
 				--timer;
 			}
@@ -120,7 +120,7 @@ public class BloodPortalEffect extends APortalEffect {
 						double z = Math.cos(theta) * tempRadius;
 						
 						Location tmp = loc.clone().add(x,0,z);
-						tmp.getWorld().spawnParticle(Particle.SMOKE_NORMAL, tmp, 0, 0, -.5, 0, 0.1);
+						tmp.getWorld().spawnParticle(Particle.SMOKE, tmp, 0, 0, -.5, 0, 0.1);
 					}
 				}
 				
@@ -133,7 +133,7 @@ public class BloodPortalEffect extends APortalEffect {
 						double z = Math.cos(tmpAngle-percent) * tempRadius;
 						Location tmp = loc.clone().add(x,0,z);
 						
-						loc.getWorld().spawnParticle(Particle.REDSTONE, tmp, 1, 0, 0, 0, 0, dust);
+						loc.getWorld().spawnParticle(Particle.DUST, tmp, 1, 0, 0, 0, 0, dust);
 					}
 				}
 				
@@ -142,7 +142,7 @@ public class BloodPortalEffect extends APortalEffect {
 					double z = Math.cos(theta) * radius2;
 					
 					Location tmp = loc.clone().add(x,0,z);
-					tmp.getWorld().spawnParticle(Particle.SMOKE_LARGE, tmp, 0, 0, .1, 0, 0.15);
+					tmp.getWorld().spawnParticle(Particle.LARGE_SMOKE, tmp, 0, 0, .1, 0, 0.15);
 				}
 				
 				angle += update;
